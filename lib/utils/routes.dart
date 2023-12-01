@@ -1,15 +1,16 @@
 import 'package:get/get.dart';
 
+import '../view/screens/home_view.dart';
+import 'binding/home_binding.dart';
+
 class Routes {
   static const String initialRoute = "/";
-  // static const String bottomNavgation = "/bottomNavigation";
-  // static const String loginView = "/loginView";
 
   static List<GetPage<dynamic>>? getPages() => [
-        // GetPage(
-        //   name: initialRoute,
-        //   page: () => const HomeView(),
-        //   binding: HomeBinding(),
-        // ),
+        GetPage(
+          name: initialRoute,
+          page: () => const HomeView(),
+          binding: HomeBinding(),
+        ),
       ];
 }
