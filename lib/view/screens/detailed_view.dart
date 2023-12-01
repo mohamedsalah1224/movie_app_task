@@ -21,13 +21,32 @@ class DetailedView extends GetView<DetailedViewModel> {
             100.verticalSpace,
             Center(
               child: CustomProfileInformationDetailedView(
-                resultsModel: controller.pesronResultModel
-              ),
+                  resultsModel: controller.pesronBasicInformation),
             ),
             30.verticalSpace,
-            GetBuilder(
-              builder: (controller){
-                return controller.i
+            GetBuilder<DetailedViewModel>(
+              builder: (controller) {
+                return controller.valueNotifierLoadImages
+                    ? Expanded(
+                        child: GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    mainAxisSpacing: 30.h,
+                                    crossAxisSpacing: 15.w),
+                            itemCount: controller.imageList.length,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  print("Go to preview Picture");
+                                },
+                                child: CustomCardUserPhoto(
+                                    imageUrl:
+                                        controller.imageList[index].toString()),
+                              );
+                            }),
+                      )
+                    : const CircularProgressIndicator();
               },
             )
           ],
