@@ -21,25 +21,14 @@ class DetailedView extends GetView<DetailedViewModel> {
             100.verticalSpace,
             Center(
               child: CustomProfileInformationDetailedView(
-                resultsModel: ResultsModel(
-                    name: "Ahmed salahAhmed salahAhmed salahAhmed salah",
-                    knownForDepartment: "Acting Acting Acting",
-                    popularity: 44554345455455.454),
+                resultsModel: controller.pesronResultModel
               ),
             ),
             30.verticalSpace,
-            Expanded(
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      mainAxisSpacing: 30.h,
-                      crossAxisSpacing: 15.w),
-                  itemCount: 80,
-                  itemBuilder: (context, index) {
-                    return const CustomCardUserPhoto(
-                      imageUrl: "",
-                    );
-                  }),
+            GetBuilder(
+              builder: (controller){
+                return controller.i
+              },
             )
           ],
         ),

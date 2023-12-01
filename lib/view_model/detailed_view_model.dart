@@ -8,11 +8,16 @@ import 'package:moive_app_task/view_model/home_view_model.dart';
 import '../model/profile_person_image_model.dart';
 
 class DetailedViewModel extends GetxController {
-  int currentIndexOfPersoninList =
+  final int _currentIndexOfPersoninList =
       Get.find<HomeViewModel>().currentIndexOfPersoninList;
-  late ResultsModel pesronModel;
-  ValueNotifier<bool> isLoadImages = ValueNotifier(false);
-  ProfilePersonImageModel? profilePersonImageModel;
+  late ResultsModel _pesronResultModel;
+  final ValueNotifier<bool> _valueNotifierLoadImages = ValueNotifier(false);
+  ProfilePersonImageModel? _profilePersonImageModel;
+
+  bool get valueNotifierLoadImages => _valueNotifierLoadImages.value;
+  ProfilePersonImageModel get profilePersonImageModel =>
+      _profilePersonImageModel!;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -22,15 +27,15 @@ class DetailedViewModel extends GetxController {
   }
 
   void getCurrentPerson() {
-    pesronModel =
-        Get.find<HomeViewModel>().peopleList[currentIndexOfPersoninList];
+    _pesronResultModel =
+        Get.find<HomeViewModel>().peopleList[_currentIndexOfPersoninList];
   }
 
   void fetchPersonImage() async {
-    int personId = pesronModel.id!;
-    profilePersonImageModel =
+    int personId = _pesronResultModel.id!;
+    _profilePersonImageModel =
         await PeopleRepositryService().getImages(personId: personId);
-    isLoadImages.value = true;
+    _valueNotifierLoadImages.value = true;
     update();
   }
 }
