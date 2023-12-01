@@ -7,11 +7,13 @@ import '../service/api/repository_implementaion_service/popular_people_list_repo
 
 class HomeViewModel extends GetxController {
   String inintHomeViewModel = "";
-  ValueNotifier<bool> _isScreenLoaded = ValueNotifier(false);
+  final ValueNotifier<bool> _isScreenLoaded = ValueNotifier(false);
   ScrollController scrollController = ScrollController();
-  List<ResultsModel> _peopleList = [];
+  final List<ResultsModel> _peopleList = [];
   int _pageID = 1;
-  int _pageLimit = 156997;
+  int _pageLimit = 3; // 156997
+  bool hasMoreData = false;
+  bool allPagesDownloaded = false;
 
   bool get isScreenLoaded => _isScreenLoaded.value;
   List<ResultsModel> get peopleList => _peopleList;
@@ -24,11 +26,29 @@ class HomeViewModel extends GetxController {
   }
 
   Future<void> _scrollListiner() async {
+    if (hasMoreData || allPagesDownloaded) return;
+
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      ++_pageID;
+      // to check if the All Pages Called from the Api
+
+      // to skip the Call Back hell for this method and prevent it from calling the Api when make a Scroll multiple time during the progrss indicator run
+
+      hasMoreData = true;
+      update(); // update the progress indicaotr
+      ++_pageID; // to go the next page
+      if (_pageID > _pageLimit) {
+        allPagesDownloaded = true;
+
+        print("-" * 50);
+        print("OK OK");
+        update();
+        return;
+      }
       await fetchData();
       update();
+      hasMoreData = false; //to enter this function agagin
+      update(); // update the list
     }
   }
 
