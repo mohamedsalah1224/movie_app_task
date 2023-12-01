@@ -8,7 +8,7 @@ import '../service/api/repository_implementaion_service/popular_people_list_repo
 class HomeViewModel extends GetxController {
   String inintHomeViewModel = "";
   ValueNotifier<bool> _isScreenLoaded = ValueNotifier(false);
-  ScrollController? scrollController = ScrollController();
+  ScrollController scrollController = ScrollController();
   List<ResultsModel> _peopleList = [];
   int _pageID = 1;
   int _pageLimit = 156997;
@@ -19,8 +19,17 @@ class HomeViewModel extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    scrollController!.addListener(() {});
+    scrollController.addListener(_scrollListiner);
     await firstFetchData();
+  }
+
+  Future<void> _scrollListiner() async {
+    if (scrollController.position.pixels ==
+        scrollController.position.maxScrollExtent) {
+      ++_pageID;
+      await fetchData();
+      update();
+    }
   }
 
   Future<void> firstFetchData() async {
