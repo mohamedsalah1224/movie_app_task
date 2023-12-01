@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:moive_app_task/utils/routes.dart';
+import 'package:moive_app_task/view/screens/detailed_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          initialRoute: Routes.initialRoute,
+          // initialRoute: Routes.initialRoute,
+          home: DetailedView(),
           getPages: Routes.getPages(),
         );
       },
