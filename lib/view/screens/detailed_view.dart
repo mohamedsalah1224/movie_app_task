@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moive_app_task/model/results_model.dart';
 import 'package:moive_app_task/view/custom_component/custom_card_user_photo.dart';
-import 'package:moive_app_task/view/custom_component/custom_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
+import 'package:moive_app_task/view_model/detailed_view_model.dart';
+import 'package:get/get.dart';
 import '../custom_component/custom_profile_information_detailed_view.dart';
 
-class DetailedView extends StatelessWidget {
+class DetailedView extends GetView<DetailedViewModel> {
   const DetailedView({super.key});
 
   @override

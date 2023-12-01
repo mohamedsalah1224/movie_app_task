@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moive_app_task/utils/routes.dart';
 
 import '../model/popular_people_List_model.dart';
 import '../model/results_model.dart';
@@ -7,6 +8,7 @@ import '../service/api/repository_implementaion_service/popular_people_list_repo
 
 class HomeViewModel extends GetxController {
   String inintHomeViewModel = "";
+  int currentIndexOfPersoninList = 1; // to share to anothe Controller
   final ValueNotifier<bool> _isScreenLoaded = ValueNotifier(false);
   ScrollController scrollController = ScrollController();
   final List<ResultsModel> _peopleList = [];
@@ -65,5 +67,10 @@ class HomeViewModel extends GetxController {
         await PopularPeopleListRepositryService().getPopular(pageID: _pageID);
     _pageLimit = popularPeopleListModel.totalPages!;
     _peopleList.addAll(popularPeopleListModel.results ?? []);
+  }
+
+  void clickPerson(int index) {
+    currentIndexOfPersoninList = index;
+    Get.toNamed(Routes.detailedView, arguments: _peopleList[index]);
   }
 }

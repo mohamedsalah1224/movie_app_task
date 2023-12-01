@@ -45,8 +45,13 @@ class HomeView extends GetView<HomeViewModel> {
                         },
                         itemBuilder: (context, index) {
                           if (index < controller.peopleList.length) {
-                            return CustomPopularPepoleListTileWidget(
-                                resultsModel: controller.peopleList[index]);
+                            return InkWell(
+                              onTap: () {
+                                controller.clickPerson(index);
+                              },
+                              child: CustomPopularPepoleListTileWidget(
+                                  resultsModel: controller.peopleList[index]),
+                            );
                           } else {
                             if (controller.hasMoreData) {
                               return const CircularProgressIndicator();
