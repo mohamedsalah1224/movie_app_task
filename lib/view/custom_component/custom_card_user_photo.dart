@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCardUserPhoto extends StatelessWidget {
   final String imageUrl;
-  const CustomCardUserPhoto({super.key, required this.imageUrl});
+  const CustomCardUserPhoto({super.key, this.imageUrl = ""});
 
   @override
   Widget build(BuildContext context) {
