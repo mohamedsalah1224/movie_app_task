@@ -6,7 +6,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomCardUserPhoto extends StatelessWidget {
-  const CustomCardUserPhoto({super.key});
+  final String imageUrl;
+  const CustomCardUserPhoto({super.key, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class CustomCardUserPhoto extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.amber, borderRadius: BorderRadius.circular(12).r),
       child: CachedNetworkImage(
-        imageUrl: "",
+        imageUrl: imageUrl.toString(),
         placeholder: (context, url) => const CircularProgressIndicator(),
         fit: BoxFit.cover,
         errorWidget: (context, url, error) => const Icon(Icons.error),

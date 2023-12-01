@@ -25,19 +25,6 @@ class DetailedView extends StatelessWidget {
                   popularity: 44554345455455.454),
             ),
           ),
-          Container(
-            width: 100.w,
-            height: 100.w,
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            decoration: BoxDecoration(
-                color: Colors.amber, borderRadius: BorderRadius.circular(12).r),
-            child: CachedNetworkImage(
-              imageUrl: "",
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              fit: BoxFit.cover,
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
-          ),
         ],
       ),
     );
