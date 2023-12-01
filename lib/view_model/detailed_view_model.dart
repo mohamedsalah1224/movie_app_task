@@ -21,11 +21,11 @@ class DetailedViewModel extends GetxController {
   List<ProfileModel> get imageList => _imageList;
 
   @override
-  void onInit() {
+  void onInit() async {
     // TODO: implement onInit
     super.onInit();
     getCurrentPerson();
-    print("OK");
+    await fetchPersonImage();
   }
 
   void getCurrentPerson() {
@@ -33,7 +33,7 @@ class DetailedViewModel extends GetxController {
         Get.find<HomeViewModel>().peopleList[_currentIndexOfPersoninList];
   }
 
-  void fetchPersonImage() async {
+  Future<void> fetchPersonImage() async {
     int personId = _pesronBasicInformation.id!;
     _profilePersonImageModel =
         await PeopleRepositryService().getImages(personId: personId);
