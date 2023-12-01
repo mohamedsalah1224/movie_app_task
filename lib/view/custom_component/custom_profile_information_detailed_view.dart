@@ -41,6 +41,7 @@ class CustomProfileInformationDetailedView extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
+                  wordCount: 30,
                 ),
                 5.verticalSpace,
                 CustomText(
@@ -48,6 +49,7 @@ class CustomProfileInformationDetailedView extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 16.sp,
                   fontWeight: FontWeight.bold,
+                  wordCount: 30,
                 ),
                 5.verticalSpace,
                 CustomText(
@@ -55,6 +57,7 @@ class CustomProfileInformationDetailedView extends StatelessWidget {
                   fontSize: 16.sp,
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  wordCount: 30,
                 ),
               ],
             ),
