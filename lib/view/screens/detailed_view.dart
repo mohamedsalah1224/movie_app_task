@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:moive_app_task/model/results_model.dart';
+
 import 'package:moive_app_task/view/custom_component/custom_card_user_photo.dart';
 import 'package:moive_app_task/view_model/detailed_view_model.dart';
 import 'package:get/get.dart';
@@ -38,7 +37,9 @@ class DetailedView extends GetView<DetailedViewModel> {
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: () {
-                                  print("Go to preview Picture");
+                                  controller.previewPhoto(context,
+                                      profileModel:
+                                          controller.imageList[index]);
                                 },
                                 child: CustomCardUserPhoto(
                                     imageUrl:

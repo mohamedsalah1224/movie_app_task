@@ -13,18 +13,21 @@ class CustomPreviewPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: profileModel.height!.h,
-      width: profileModel.width!.w,
+      height: double.infinity,
+      width: double.infinity,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        color: const Color(0xFFFFFF),
-        borderRadius: const BorderRadius.all(Radius.circular(32.0)).r,
+        //  color: const Color(0xFFFFFF),
+        color: Colors.black,
+        //  borderRadius: const BorderRadius.all(Radius.circular(32.0)).r,
       ),
-      child: CachedNetworkImage(
-        imageUrl: "${EndPoint.imagePath}${profileModel.filePath}",
-        placeholder: (context, url) => const CircularProgressIndicator(),
-        fit: BoxFit.cover,
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+      child: AspectRatio(
+        aspectRatio: profileModel.aspectRatio!,
+        child: CachedNetworkImage(
+          imageUrl: "${EndPoint.imagePath}${profileModel.filePath}",
+          placeholder: (context, url) => const CircularProgressIndicator(),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
+        ),
       ),
     );
   }
