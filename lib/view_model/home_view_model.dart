@@ -16,7 +16,7 @@ class HomeViewModel extends GetxController {
   final List<ResultsModel> _peopleList = [];
   int _pageID = 1;
   int _pageLimit =
-      3; // defualt data of server = 156997 but I Set a 3 to Handle when the API No More Data
+      10; // defualt data of server = 156997 but I Set a 10 to Handle when the API No More Data
   bool hasMoreData = false;
   bool allPagesDownloaded = false;
   bool isInternetConection = true;
@@ -104,8 +104,11 @@ class HomeViewModel extends GetxController {
 
   void clickPerson(int index) {
     if (!isInternetConection) {
-      SnackBarHelper.instance
-          .showMessage(message: 'No Internet Connection', milliseconds: 80);
+      SnackBarHelper.instance.showMessage(
+          message:
+              'No Internet Connection Please check Internet and ReOpen the App again',
+          milliseconds: 1300,
+          erro: true);
       return;
     }
     currentIndexOfPersoninList = index;

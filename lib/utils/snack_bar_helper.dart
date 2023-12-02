@@ -8,10 +8,12 @@ class SnackBarHelper {
 
   static SnackBarHelper get instance => _instance ??= SnackBarHelper._();
 
-  showMessage({required String message, int milliseconds = 40}) {
+  showMessage(
+      {required String message, int milliseconds = 40, bool erro = false}) {
     ScaffoldMessenger.of(navigatorKey.currentState!.context)
         .showSnackBar(SnackBar(
       elevation: 0.0,
+      backgroundColor: erro ? Colors.deepOrange : Colors.deepPurple,
       //behavior: SnackBarBehavior.floating,
 
       content: Text(message),

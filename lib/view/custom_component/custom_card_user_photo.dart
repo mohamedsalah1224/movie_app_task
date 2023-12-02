@@ -17,10 +17,14 @@ class CustomCardUserPhoto extends StatelessWidget {
       height: 100.w,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       decoration: BoxDecoration(
-          color: Colors.amber, borderRadius: BorderRadius.circular(12).r),
+          color: Colors.deepPurple, borderRadius: BorderRadius.circular(12).r),
       child: CachedNetworkImage(
         imageUrl: "${EndPoint.imagePath}$imageUrl",
-        placeholder: (context, url) => const CircularProgressIndicator(),
+        placeholder: (context, url) => CircularProgressIndicator(
+          strokeWidth: 2,
+          backgroundColor: Colors.deepPurple.shade100,
+          color: Colors.deepPurple,
+        ),
         fit: BoxFit.cover,
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),

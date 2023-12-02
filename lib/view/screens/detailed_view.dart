@@ -12,7 +12,10 @@ class DetailedView extends GetView<DetailedViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.deepPurple.withOpacity(0.5),
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
+      ),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 12),
         child: Column(
@@ -48,7 +51,10 @@ class DetailedView extends GetView<DetailedViewModel> {
                               );
                             }),
                       )
-                    : const CircularProgressIndicator();
+                    : CircularProgressIndicator(
+                        backgroundColor: Colors.deepPurple.shade100,
+                        color: Colors.deepPurple,
+                      );
               },
             )
           ],

@@ -26,9 +26,21 @@ class CustomProfileInformationDetailedView extends StatelessWidget {
                 color: Colors.deepPurple,
                 boxShadow: [
                   BoxShadow(
-                      color: Colors.grey.shade400,
+                      color: Colors.deepPurple.shade400,
                       blurRadius: 2,
-                      offset: const Offset(0, 10))
+                      offset: const Offset(0, 5)),
+                  BoxShadow(
+                      color: Colors.deepPurple.shade400,
+                      blurRadius: 2,
+                      offset: const Offset(0, -5)),
+                  BoxShadow(
+                      color: Colors.deepPurple.shade400,
+                      blurRadius: 2,
+                      offset: const Offset(-5, -0)),
+                  BoxShadow(
+                      color: Colors.deepPurple.shade400,
+                      blurRadius: 2,
+                      offset: const Offset(5, 0)),
                 ],
                 borderRadius: BorderRadius.circular(12).r),
             child: Column(
@@ -70,11 +82,13 @@ class CustomProfileInformationDetailedView extends StatelessWidget {
               height: 100.w,
               clipBehavior: Clip.antiAliasWithSaveLayer,
               decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.amber),
+                  shape: BoxShape.circle, color: Colors.deepPurple),
               child: CachedNetworkImage(
                 imageUrl: "${EndPoint.imagePath}${resultsModel.profilePath}",
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
+                placeholder: (context, url) => CircularProgressIndicator(
+                  backgroundColor: Colors.deepPurple.shade100,
+                  color: Colors.deepPurple,
+                ),
                 fit: BoxFit.cover,
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),

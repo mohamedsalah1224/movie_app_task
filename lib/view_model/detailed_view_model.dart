@@ -65,11 +65,12 @@ class DetailedViewModel extends GetxController {
     Get.back();
     if (statusOfDownloadedImageAtGallaryModel.isSuccess) {
       SnackBarHelper.instance
-          .showMessage(message: "Sucess for Save the Image", milliseconds: 180);
+          .showMessage(message: "Sucess for Save the Image", milliseconds: 700);
     } else {
       SnackBarHelper.instance.showMessage(
           message: statusOfDownloadedImageAtGallaryModel.errorMessage,
-          milliseconds: 180);
+          erro: true,
+          milliseconds: 1000);
     }
   }
 
