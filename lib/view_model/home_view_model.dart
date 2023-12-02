@@ -16,7 +16,7 @@ class HomeViewModel extends GetxController {
   final List<ResultsModel> _peopleList = [];
   int _pageID = 1;
   int _pageLimit =
-      10; // defualt data of server = 156997 but I Set a 10 to Handle when the API No More Data
+      15; // defualt data of server = 156997 but I Set a 15 to Handle when the API No More Data
   bool hasMoreData = false;
   bool allPagesDownloaded = false;
   bool isInternetConection = true;
