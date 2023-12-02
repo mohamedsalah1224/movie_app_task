@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:moive_app_task/service/local/cache_pepole_list.dart';
 import 'package:moive_app_task/utils/check_connection_helper.dart';
 import 'package:moive_app_task/utils/routes.dart';
+import 'package:moive_app_task/utils/snack_bar_helper.dart';
 
 import '../model/popular_people_List_model.dart';
 import '../model/results_model.dart';
@@ -56,6 +57,8 @@ class HomeViewModel extends GetxController {
 
   Future<void> firstFetchData() async {
     _isScreenLoaded.value = false;
+    // delte all Cache and Clear list of Cache first to avoid duplicated of data
+    await CachePepoleList.instance.clearAllPosts();
     await fetchDataFromNetwork().then((value) {
       _isScreenLoaded.value = true;
       update();
@@ -95,6 +98,11 @@ class HomeViewModel extends GetxController {
   }
 
   void clickPerson(int index) {
+    if (!isInternetConection) {
+      SnackBarHelper.instance
+          .showMessage(message: 'No Internet Connection', milliseconds: 120);
+      return;
+    }
     currentIndexOfPersoninList = index;
     Get.toNamed(Routes.detailedView);
   }

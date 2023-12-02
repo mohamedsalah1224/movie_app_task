@@ -4,7 +4,7 @@ import 'known_for__model.dart';
 
 part 'results_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 5)
 class ResultsModel {
   @HiveField(0)
   bool? adult;
