@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:moive_app_task/model/profile_model.dart';
 import 'package:moive_app_task/view/custom_component/custom_preview_photo.dart';
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:moive_app_task/view_model/detailed_view_model.dart';
 

@@ -59,6 +59,7 @@ dev_dependencies:
   hive_generator: ^2.0.1
   build_runner: ^2.4.7
   internet_connection_checker: ^1.0.0+1
+  image_gallery_saver: ^2.0.3
   
   
   

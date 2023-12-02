@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moive_app_task/model/results_model.dart';
-import 'package:moive_app_task/model/results_model.dart';
 import 'package:moive_app_task/service/api/repository_implementaion_service/pepole_repositry_service.dart';
 import 'package:moive_app_task/utils/dialog_helper.dart';
 import 'package:moive_app_task/view_model/home_view_model.dart';
 
 import '../model/profile_model.dart';
 import '../model/profile_person_image_model.dart';
+import '../utils/snack_bar_helper.dart';
 
 class DetailedViewModel extends GetxController {
   final int _currentIndexOfPersoninList = Get.find<HomeViewModel>()
@@ -56,9 +56,11 @@ class DetailedViewModel extends GetxController {
 
   void downloadPicture() {
     print("Download");
+    SnackBarHelper.instance.showMessage(message: "Download photo");
   }
 
   void onDismissPircture() {
     Get.back();
+    SnackBarHelper.instance.showMessage(message: "Dismiss photo");
   }
 }

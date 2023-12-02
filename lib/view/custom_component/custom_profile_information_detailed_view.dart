@@ -1,9 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:moive_app_task/utils/end_point.dart';
 import '../../model/results_model.dart';
 import 'custom_text.dart';
+// ignore: depend_on_referenced_packages
 import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomProfileInformationDetailedView extends StatelessWidget {

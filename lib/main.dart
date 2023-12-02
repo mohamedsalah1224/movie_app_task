@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
 import 'package:moive_app_task/utils/constant.dart';
 import 'package:moive_app_task/utils/routes.dart';
-import 'package:moive_app_task/view/screens/detailed_view.dart';
 
 void main() {
   runApp(const MyApp());
