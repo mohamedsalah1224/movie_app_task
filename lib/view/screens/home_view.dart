@@ -43,8 +43,8 @@ class HomeView extends GetView<HomeViewModel> {
                           )
                         : ListView.separated(
                             controller: controller.scrollController,
-                            itemCount: controller.hasMoreData ||
-                                    controller.allPagesDownloaded
+                            itemCount: (controller.hasMoreData ||
+                                    controller.allPagesDownloaded)
                                 ? controller.peopleList.length + 1
                                 : controller.peopleList.length,
                             separatorBuilder: (context, index) {

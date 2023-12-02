@@ -15,7 +15,8 @@ class HomeViewModel extends GetxController {
   ScrollController scrollController = ScrollController();
   final List<ResultsModel> _peopleList = [];
   int _pageID = 1;
-  int _pageLimit = 3; // 156997
+  int _pageLimit =
+      3; // defualt data of server = 156997 but I Set a 3 to Handle when the API No More Data
   bool hasMoreData = false;
   bool allPagesDownloaded = false;
   bool isInternetConection = true;
@@ -40,17 +41,20 @@ class HomeViewModel extends GetxController {
       hasMoreData = true;
       update(); // update the progress indicaotr
       ++_pageID; // to go the next page
-
-      // to check if the All Pages Called from the Api
+//////////////////////////////////////////////////////////////////
+      // to check if the All Pages Called from the Api or not
       if (_pageID > _pageLimit) {
         allPagesDownloaded = true;
-
+        hasMoreData =
+            false; // to delete the Cricle Progrss because it will always true before this body
         update();
         return;
       }
+//////////////////////////////////////////////////////////////////
       await fetchDataFromNetwork();
       update();
-      hasMoreData = false; //to enter this function agagin
+      hasMoreData =
+          false; //to enter this function agagin and help it to make more scrole
       update(); // update the list
     }
   }
@@ -68,7 +72,8 @@ class HomeViewModel extends GetxController {
   Future<void> fetchDataFromNetwork() async {
     PopularPeopleListModel popularPeopleListModel =
         await PopularPeopleListRepositryService().getPopular(pageID: _pageID);
-    _pageLimit = popularPeopleListModel.totalPages!;
+    // _pageLimit = popularPeopleListModel.totalPages!;
+    //// we can make this every request to update the chagnes can will be (like profile removed) this mean the pageId ca be decreased but I Disable it now to Check the PageLimit with 3
     _peopleList.addAll(popularPeopleListModel.results ?? []);
     updateCahce(listResultModel: popularPeopleListModel.results ?? [])
         .then((value) => null); // use then to skip the freeze UI
@@ -100,7 +105,7 @@ class HomeViewModel extends GetxController {
   void clickPerson(int index) {
     if (!isInternetConection) {
       SnackBarHelper.instance
-          .showMessage(message: 'No Internet Connection', milliseconds: 120);
+          .showMessage(message: 'No Internet Connection', milliseconds: 80);
       return;
     }
     currentIndexOfPersoninList = index;
