@@ -70,6 +70,13 @@ class HomeViewModel extends GetxController {
   }
 
   Future<void> fetchDataFromNetwork() async {
+    bool isConnection = await CheckConnectionHelper.checkConnection();
+    if (!isConnection) {
+      hasMoreData =
+          false; // to activate the Scroll when turn on the internet in the homeView after close it
+      update();
+      return;
+    }
     PopularPeopleListModel popularPeopleListModel =
         await PopularPeopleListRepositryService().getPopular(pageID: _pageID);
     // _pageLimit = popularPeopleListModel.totalPages!;
@@ -102,8 +109,9 @@ class HomeViewModel extends GetxController {
     await CachePepoleList.instance.udatePostsCache(values: listResultModel);
   }
 
-  void clickPerson(int index) {
-    if (!isInternetConection) {
+  void clickPerson(int index) async {
+    bool check = await CheckConnectionHelper.checkConnection();
+    if (!check) {
       SnackBarHelper.instance.showMessage(
           message:
               'No Internet Connection Please check Internet and ReOpen the App again',

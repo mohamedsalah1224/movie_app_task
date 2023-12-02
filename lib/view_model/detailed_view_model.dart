@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moive_app_task/model/results_model.dart';
 import 'package:moive_app_task/service/api/repository_implementaion_service/pepole_repositry_service.dart';
+import 'package:moive_app_task/utils/check_connection_helper.dart';
 import 'package:moive_app_task/utils/dialog_helper.dart';
 import 'package:moive_app_task/utils/end_point.dart';
 import 'package:moive_app_task/utils/image_gallary_saver.dart';
@@ -56,6 +57,17 @@ class DetailedViewModel extends GetxController {
   }
 
   Future<void> downloadPicture({required String currentUrlImage}) async {
+    bool check = await CheckConnectionHelper.checkConnection();
+    if (!check) {
+      // check if ther a Connection or not
+      Get.back();
+      SnackBarHelper.instance.showMessage(
+          message:
+              'No Internet Connection Please check Internet and ReOpen the App again',
+          milliseconds: 1300,
+          erro: true);
+      return;
+    }
     StatusOfDownloadedImageAtGallaryModel
         statusOfDownloadedImageAtGallaryModel = await ImageGallarySaver.instance
             .saveNetworkImage(
