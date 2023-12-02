@@ -1,3 +1,5 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import '../../../model/profile_person_image_model.dart';
 import '../../../utils/end_point.dart';
 import '../../networking/dio_helper.dart';
@@ -15,7 +17,7 @@ class PeopleRepositryService implements PepoleRepositry {
     var response = await DioHelper().dio.get(
         EndPoint.profilePersonImage(person_id: personId),
         queryParameters: {
-          "api_key": "fdd781f0c3c5c144079ecc6c5ca41814",
+          "api_key": dotenv.get('API_KEY'), // To Protect Api Key
         });
     return ProfilePersonImageModel.fromJson(response.data);
   }

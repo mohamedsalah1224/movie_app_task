@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class DioInterceptors extends Interceptor {
   final Dio dio;
@@ -11,7 +12,7 @@ class DioInterceptors extends Interceptor {
     // Before Any Request Send this Header
     options.headers['Accept'] = "accept: application/json";
     options.headers['Authorization'] =
-        "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmZGQ3ODFmMGMzYzVjMTQ0MDc5ZWNjNmM1Y2E0MTgxNCIsInN1YiI6IjY1NjdhZDk3M2Q3NDU0MDBlYTI3OTQ4YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.3gCSnqmohI8UvcOoHczf1Y7D4aMfD3nWs5ghFlgIArU";
+        dotenv.get('ACESS_TOKEN'); // Save the Acess Token in the .ENV File
 
     //  var accessToken = await TokenRepository().getAccessToken();
 
