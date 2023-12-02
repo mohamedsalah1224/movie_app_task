@@ -8,13 +8,14 @@ class SnackBarHelper {
 
   static SnackBarHelper get instance => _instance ??= SnackBarHelper._();
 
-  showMessage({required String message}) {
+  showMessage({required String message, int milliseconds = 40}) {
     ScaffoldMessenger.of(navigatorKey.currentState!.context)
         .showSnackBar(SnackBar(
       elevation: 0.0,
       //behavior: SnackBarBehavior.floating,
+
       content: Text(message),
-      duration: const Duration(seconds: 1),
+      duration: Duration(milliseconds: milliseconds),
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),

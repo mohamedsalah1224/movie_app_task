@@ -38,8 +38,9 @@ class DetailedView extends GetView<DetailedViewModel> {
                               return InkWell(
                                 onTap: () {
                                   controller.previewPhoto(context,
-                                      profileModel:
-                                          controller.imageList[index]);
+                                      profileModel: controller.imageList[index],
+                                      currentUrlImage: controller
+                                          .imageList[index].filePath!);
                                 },
                                 child: CustomCardUserPhoto(
                                     imageUrl:

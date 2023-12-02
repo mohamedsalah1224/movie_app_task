@@ -3,10 +3,13 @@ import 'package:get/get.dart';
 import 'package:moive_app_task/model/results_model.dart';
 import 'package:moive_app_task/service/api/repository_implementaion_service/pepole_repositry_service.dart';
 import 'package:moive_app_task/utils/dialog_helper.dart';
+import 'package:moive_app_task/utils/end_point.dart';
+import 'package:moive_app_task/utils/image_gallary_saver.dart';
 import 'package:moive_app_task/view_model/home_view_model.dart';
 
 import '../model/profile_model.dart';
 import '../model/profile_person_image_model.dart';
+import '../model/status_of_download_image_at_gallary_model.dart';
 import '../utils/snack_bar_helper.dart';
 
 class DetailedViewModel extends GetxController {
@@ -43,20 +46,31 @@ class DetailedViewModel extends GetxController {
     update();
   }
 
-  void previewPhoto(
-    BuildContext context, {
-    required ProfileModel profileModel,
-  }) {
+  void previewPhoto(BuildContext context,
+      {required ProfileModel profileModel, required String currentUrlImage}) {
     DialogHelper.instance.showCustomDialog(
       context: context,
       profileModel: profileModel,
-      onDownload: downloadPicture,
+      currentUrlImage: currentUrlImage,
     );
   }
 
-  void downloadPicture() {
-    print("Download");
-    SnackBarHelper.instance.showMessage(message: "Download photo");
+  Future<void> downloadPicture({required String currentUrlImage}) async {
+    StatusOfDownloadedImageAtGallaryModel
+        statusOfDownloadedImageAtGallaryModel = await ImageGallarySaver.instance
+            .saveNetworkImage(
+                url: "${EndPoint.imagePath}$currentUrlImage",
+                name: pesronBasicInformation.name!);
+
+    Get.back();
+    if (statusOfDownloadedImageAtGallaryModel.isSuccess) {
+      SnackBarHelper.instance
+          .showMessage(message: "Sucess for Save the Image", milliseconds: 180);
+    } else {
+      SnackBarHelper.instance.showMessage(
+          message: statusOfDownloadedImageAtGallaryModel.errorMessage,
+          milliseconds: 180);
+    }
   }
 
   void onDismissPircture() {

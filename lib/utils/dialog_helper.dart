@@ -15,7 +15,7 @@ class DialogHelper {
   void showCustomDialog(
       {required BuildContext context,
       required ProfileModel profileModel,
-      required void Function()? onDownload}) {
+      required String currentUrlImage}) {
     showGeneralDialog(
         context: context,
         barrierColor: Colors.black12.withOpacity(0.6), // Background color
@@ -36,8 +36,9 @@ class DialogHelper {
                     child: const Text('Dismiss'),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      Get.find<DetailedViewModel>().downloadPicture();
+                    onPressed: () async {
+                      await Get.find<DetailedViewModel>()
+                          .downloadPicture(currentUrlImage: currentUrlImage);
                     },
                     child: const Text('download Picture'),
                   ),
