@@ -75,6 +75,5 @@ class DetailedViewModel extends GetxController {
 
   void onDismissPircture() {
     Get.back();
-    SnackBarHelper.instance.showMessage(message: "Dismiss photo");
   }
 }
