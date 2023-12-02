@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'constant.dart';
+
 class SnackBarHelper {
   SnackBarHelper._();
   static SnackBarHelper? _instance;
 
   static SnackBarHelper get instance => _instance ??= SnackBarHelper._();
 
-  showMessage(BuildContext context, {required String message}) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  showMessage({required String message}) {
+    ScaffoldMessenger.of(navigatorKey.currentState!.context)
+        .showSnackBar(SnackBar(
       elevation: 0.0,
       //behavior: SnackBarBehavior.floating,
       content: Text(message),

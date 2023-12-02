@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:moive_app_task/utils/constant.dart';
 import 'package:moive_app_task/utils/routes.dart';
 import 'package:moive_app_task/view/screens/detailed_view.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (BuildContext context, child) {
         return GetMaterialApp(
+          navigatorKey: navigatorKey,
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           initialRoute: Routes.initialRoute,
