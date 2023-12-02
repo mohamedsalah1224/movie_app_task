@@ -5,6 +5,7 @@ import 'package:moive_app_task/view/custom_component/custom_card_user_photo.dart
 import 'package:moive_app_task/view_model/detailed_view_model.dart';
 import 'package:get/get.dart';
 import '../custom_component/custom_profile_information_detailed_view.dart';
+import '../custom_component/custom_text.dart';
 
 class DetailedView extends GetView<DetailedViewModel> {
   const DetailedView({super.key});
@@ -15,6 +16,12 @@ class DetailedView extends GetView<DetailedViewModel> {
       backgroundColor: Colors.deepPurple.withOpacity(0.5),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
+        title: const CustomText(
+          text: "Mohamed Gawdat",
+          color: Colors.white,
+          fontSize: 18,
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: REdgeInsets.symmetric(horizontal: 12),

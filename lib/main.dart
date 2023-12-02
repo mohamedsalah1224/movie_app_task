@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       builder: (BuildContext context, child) {
         return GetMaterialApp(
           navigatorKey: navigatorKey,
-          title: 'Flutter Demo',
+          title: 'Movie App',
           debugShowCheckedModeBanner: false,
           initialRoute: Routes.initialRoute,
           getPages: Routes.getPages(),

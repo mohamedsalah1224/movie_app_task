@@ -16,6 +16,12 @@ class HomeView extends GetView<HomeViewModel> {
       backgroundColor: Colors.deepPurple.withOpacity(0.5),
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
+        title: const CustomText(
+          text: "Mohamed Gawdat",
+          color: Colors.white,
+          fontSize: 18,
+        ),
+        centerTitle: true,
       ),
       body: Padding(
         padding: REdgeInsets.symmetric(vertical: 15),
