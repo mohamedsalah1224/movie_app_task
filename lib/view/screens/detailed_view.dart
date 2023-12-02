@@ -42,7 +42,7 @@ class DetailedView extends GetView<DetailedViewModel> {
                                 },
                                 child: CustomCardUserPhoto(
                                     imageUrl:
-                                        controller.imageList[index].toString()),
+                                        controller.imageList[index].filePath),
                               );
                             }),
                       )

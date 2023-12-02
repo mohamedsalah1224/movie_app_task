@@ -7,7 +7,6 @@ import '../model/results_model.dart';
 import '../service/api/repository_implementaion_service/popular_people_list_repositry_servicel.dart';
 
 class HomeViewModel extends GetxController {
-  String inintHomeViewModel = "";
   int currentIndexOfPersoninList = 1; // to share to anothe Controller
   final ValueNotifier<bool> _isScreenLoaded = ValueNotifier(false);
   ScrollController scrollController = ScrollController();
@@ -28,22 +27,19 @@ class HomeViewModel extends GetxController {
   }
 
   Future<void> _scrollListiner() async {
+    // to skip the Call Back hell for this method and prevent it from calling the Api when make a Scroll multiple time during the progrss indicator run
     if (hasMoreData || allPagesDownloaded) return;
 
     if (scrollController.position.pixels ==
         scrollController.position.maxScrollExtent) {
-      // to check if the All Pages Called from the Api
-
-      // to skip the Call Back hell for this method and prevent it from calling the Api when make a Scroll multiple time during the progrss indicator run
-
       hasMoreData = true;
       update(); // update the progress indicaotr
       ++_pageID; // to go the next page
+
+      // to check if the All Pages Called from the Api
       if (_pageID > _pageLimit) {
         allPagesDownloaded = true;
 
-        print("-" * 50);
-        print("OK OK");
         update();
         return;
       }
@@ -71,6 +67,6 @@ class HomeViewModel extends GetxController {
 
   void clickPerson(int index) {
     currentIndexOfPersoninList = index;
-    Get.toNamed(Routes.detailedView, arguments: _peopleList[index]);
+    Get.toNamed(Routes.detailedView);
   }
 }

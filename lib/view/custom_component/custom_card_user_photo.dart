@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:moive_app_task/utils/end_point.dart';
 
 class CustomCardUserPhoto extends StatelessWidget {
   final String? imageUrl;
@@ -18,7 +19,7 @@ class CustomCardUserPhoto extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.amber, borderRadius: BorderRadius.circular(12).r),
       child: CachedNetworkImage(
-        imageUrl: imageUrl.toString(),
+        imageUrl: "${EndPoint.imagePath}$imageUrl",
         placeholder: (context, url) => const CircularProgressIndicator(),
         fit: BoxFit.cover,
         errorWidget: (context, url, error) => const Icon(Icons.error),
