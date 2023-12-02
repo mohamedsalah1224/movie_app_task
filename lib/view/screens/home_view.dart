@@ -32,40 +32,51 @@ class HomeView extends GetView<HomeViewModel> {
               init: Get.find<HomeViewModel>(),
               builder: (controller) {
                 return controller.isScreenLoaded
-                    ? ListView.separated(
-                        controller: controller.scrollController,
-                        itemCount: controller.hasMoreData ||
-                                controller.allPagesDownloaded
-                            ? controller.peopleList.length + 1
-                            : controller.peopleList.length,
-                        separatorBuilder: (context, index) {
-                          return const Divider(
-                            color: Colors.white,
-                          );
-                        },
-                        itemBuilder: (context, index) {
-                          if (index < controller.peopleList.length) {
-                            return InkWell(
-                              onTap: () {
-                                controller.clickPerson(index);
-                              },
-                              child: CustomPopularPepoleListTileWidget(
-                                  resultsModel: controller.peopleList[index]),
-                            );
-                          } else {
-                            if (controller.hasMoreData) {
-                              return const CircularProgressIndicator();
-                            } else {
-                              return Center(
-                                child: Padding(
-                                  padding: REdgeInsets.symmetric(vertical: 12),
-                                  child: CustomText(text: "No More Data"),
-                                ),
+                    ? controller.peopleList.isEmpty
+                        ? const Center(
+                            child: CustomText(
+                              text: 'No Data founded',
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          )
+                        : ListView.separated(
+                            controller: controller.scrollController,
+                            itemCount: controller.hasMoreData ||
+                                    controller.allPagesDownloaded
+                                ? controller.peopleList.length + 1
+                                : controller.peopleList.length,
+                            separatorBuilder: (context, index) {
+                              return const Divider(
+                                color: Colors.white,
                               );
-                            }
-                          }
-                        },
-                      )
+                            },
+                            itemBuilder: (context, index) {
+                              if (index < controller.peopleList.length) {
+                                return InkWell(
+                                  onTap: () {
+                                    controller.clickPerson(index);
+                                  },
+                                  child: CustomPopularPepoleListTileWidget(
+                                      resultsModel:
+                                          controller.peopleList[index]),
+                                );
+                              } else {
+                                if (controller.hasMoreData) {
+                                  return const CircularProgressIndicator();
+                                } else {
+                                  return Center(
+                                    child: Padding(
+                                      padding:
+                                          REdgeInsets.symmetric(vertical: 12),
+                                      child: CustomText(text: "No More Data"),
+                                    ),
+                                  );
+                                }
+                              }
+                            },
+                          )
                     : const Center(
                         child: CircularProgressIndicator(),
                       );

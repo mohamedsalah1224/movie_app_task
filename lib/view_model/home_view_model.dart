@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moive_app_task/service/local/cache_pepole_list.dart';
+import 'package:moive_app_task/utils/check_connection_helper.dart';
 import 'package:moive_app_task/utils/routes.dart';
 
 import '../model/popular_people_List_model.dart';
@@ -15,6 +17,7 @@ class HomeViewModel extends GetxController {
   int _pageLimit = 3; // 156997
   bool hasMoreData = false;
   bool allPagesDownloaded = false;
+  bool isInternetConection = true;
 
   bool get isScreenLoaded => _isScreenLoaded.value;
   List<ResultsModel> get peopleList => _peopleList;
@@ -22,11 +25,12 @@ class HomeViewModel extends GetxController {
   @override
   void onInit() async {
     super.onInit();
+    await checkFetchDataMethod();
     scrollController.addListener(_scrollListiner);
-    await firstFetchData();
   }
 
   Future<void> _scrollListiner() async {
+    if (!isInternetConection) return;
     // to skip the Call Back hell for this method and prevent it from calling the Api when make a Scroll multiple time during the progrss indicator run
     if (hasMoreData || allPagesDownloaded) return;
 
@@ -43,7 +47,7 @@ class HomeViewModel extends GetxController {
         update();
         return;
       }
-      await fetchData();
+      await fetchDataFromNetwork();
       update();
       hasMoreData = false; //to enter this function agagin
       update(); // update the list
@@ -52,17 +56,42 @@ class HomeViewModel extends GetxController {
 
   Future<void> firstFetchData() async {
     _isScreenLoaded.value = false;
-    await fetchData().then((value) {
+    await fetchDataFromNetwork().then((value) {
       _isScreenLoaded.value = true;
       update();
     });
   }
 
-  Future<void> fetchData() async {
+  Future<void> fetchDataFromNetwork() async {
     PopularPeopleListModel popularPeopleListModel =
         await PopularPeopleListRepositryService().getPopular(pageID: _pageID);
     _pageLimit = popularPeopleListModel.totalPages!;
     _peopleList.addAll(popularPeopleListModel.results ?? []);
+    updateCahce(listResultModel: popularPeopleListModel.results ?? [])
+        .then((value) => null); // use then to skip the freeze UI
+  }
+
+  void fetchDataFromCache() {
+    _peopleList.addAll(CachePepoleList.instance.getPostsCache());
+    _isScreenLoaded.value = true;
+    update();
+  }
+
+  Future<void> checkFetchDataMethod() async {
+    // How get Data from Cache or Netwok
+    bool isConnection = await CheckConnectionHelper.checkConnection();
+    if (isConnection) {
+      await firstFetchData();
+    } else {
+      isInternetConection = false;
+      fetchDataFromCache();
+    }
+  }
+
+  Future<void> updateCahce(
+      {required List<ResultsModel> listResultModel}) async {
+    // Add newResult to the Cache when fetch a new Data
+    await CachePepoleList.instance.udatePostsCache(values: listResultModel);
   }
 
   void clickPerson(int index) {
