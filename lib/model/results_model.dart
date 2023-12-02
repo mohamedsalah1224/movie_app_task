@@ -1,14 +1,28 @@
+import 'package:hive/hive.dart';
+
 import 'known_for__model.dart';
 
+part 'results_model.g.dart';
+
+@HiveType(typeId: 1)
 class ResultsModel {
+  @HiveField(0)
   bool? adult;
+  @HiveField(1)
   int? gender;
+  @HiveField(2)
   int? id;
+  @HiveField(3)
   String? knownForDepartment;
+  @HiveField(4)
   String? name;
+  @HiveField(5)
   String? originalName;
+  @HiveField(6)
   double? popularity;
+  @HiveField(7)
   String? profilePath;
+  @HiveField(8)
   List<KnownForModel>? knownFor;
 
   ResultsModel(

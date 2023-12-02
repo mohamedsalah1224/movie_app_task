@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 // ignore: depend_on_referenced_packages
 import 'package:get/get.dart';
+import 'package:moive_app_task/model/results_model.dart';
+import 'package:moive_app_task/service/local/cache_pepole_list.dart';
 import 'package:moive_app_task/utils/constant.dart';
 import 'package:moive_app_task/utils/routes.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ResultsModelAdapter());
+  await CachePepoleList.instance.init();
+
   runApp(const MyApp());
 }
 
