@@ -1,16 +1,7 @@
-# moive_app_task
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+movie_app:-
+1- make a Api Service for each peepoleList , profileImage
+2-  HomeView completed infinite scrolling and show has no more data
+3-  DetailedView Completed ( basic profile information , Grid view of images)
+4-  make a Cache With the Hive during no internet and update always the Cache 
+5-  show the image in their size
+6- make simple integraion testing
