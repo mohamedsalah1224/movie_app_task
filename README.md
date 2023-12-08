@@ -1,4 +1,5 @@
 movie_app:-
+
 1- make a Api Service for each peepoleList , profileImage
 
 2-  HomeView completed infinite scrolling and show has no more data
